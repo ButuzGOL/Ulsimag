@@ -1,0 +1,4 @@
+require 'rubygems'
+require 'autotest/growl'
+require 'autotest/fsevent'
+
