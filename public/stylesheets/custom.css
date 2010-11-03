@@ -1,9 +1,7 @@
-.container {
-  width: 710px;
-}
 
 body {
-  background: #cff;
+  background: #FFF url(../images/background.png) fixed;
+  color: #555;
 }
 
 header {
@@ -11,15 +9,31 @@ header {
 }
 
 header img {
-  padding: 1em;
-  background: #fff;
+  float: left;
+}
+
+header #logo {
+  padding: 10px 20px;
+	font-size: 400%;
+  font-weight: bold;
+  float: left;
+  height: 34px;
+  color: #fff;
+  text-shadow: 0 0 6px #fff;
+  margin-left: -5px;
+}
+
+header #logo:hover {
+  text-decoration: none;
+}
+
+head nav {
+  float: right;
 }
 
 section {
   margin-top: 1em;
   font-size: 120%;
-  padding: 20px;
-  background: #fff;
 }
 
 section h1 {
@@ -99,10 +113,17 @@ a.signup_button {
   border-radius:         10px;
 }
 
+.background {
+  background-color: #fff;
+}
+
+.static {
+  padding: 20px;
+}
+
 footer {
   text-align: left;
   margin-top: 10px;
-  width: 710px;
   margin-left: auto;
   margin-right: auto;
 }
@@ -251,4 +272,9 @@ form.new_micropost {
 form.new_micropost textarea {
   height: 4em;
   margin-bottom: 0;
+}
+
+.debug_dump {
+  background-color: #fff;
+  padding: 5px;
 }
