@@ -5,8 +5,9 @@ CREATE TABLE ulsimag_user
   email VARCHAR(128) NOT NULL,
   salt VARCHAR(128) NOT NULL,
   encrypted_password VARCHAR(128) NOT NULL,
-  image VARCHAR(128),
-  about TEXT,
+  lost_password VARCHAR(128) NOT NULL,
+--  image VARCHAR(128),
+--  about TEXT,
   admin BOOLEAN
 );
 
