@@ -17,8 +17,10 @@
 require 'digest'
 
 class User < ActiveRecord::Base
+  has_many :email_account, :dependent => :destroy
+  
   attr_accessor :password
-  attr_accessible :name, :email, :password
+  attr_accessible :name, :email, :password, :password_confirmation
 
   email_regex = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
 
@@ -30,8 +32,10 @@ class User < ActiveRecord::Base
                     :format   => { :with => email_regex },
                     :uniqueness => { :case_sensitive => false }
   
-  validates :password, :presence     => true,
-                       :length       => { :within => 6..40 }
+  validates :password, :presence     =>  true,
+                       :confirmation => true,
+                       :length       => { :within => 6..40 },
+                       :if => :password_required?
 
   before_save :encrypt_password
   
@@ -50,6 +54,10 @@ class User < ActiveRecord::Base
   def self.authenticate_with_salt(id, cookie_salt)
     user = find_by_id(id)
     (user && user.salt == cookie_salt) ? user : nil
+  end
+
+  def password_required?
+    self.encrypted_password.blank? || !self.password.blank?
   end
   
   private

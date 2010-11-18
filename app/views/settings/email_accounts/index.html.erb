@@ -1,0 +1,27 @@
+<%= render 'settings/menu' %>
+<div class="round background static span-18 last">
+  <h1>Email Accounts</h1>
+  <%= form_for [:settings, @email_account] do |f| %>
+    <%= render 'shared/error_messages', :object => f.object %>
+    <div class="field">
+      <%= f.label :email %>
+      <%= f.text_field :email %>
+    </div>
+    <div class="field">
+      <%= f.label :password %>
+      <%= f.text_field :password %>
+    </div>
+    <div class="actions">
+      <%= f.submit "Create" %>
+    </div>
+  <% end %>
+
+  <hr />
+
+<ul>
+  <%= render @email_accounts %>
+</ul>
+
+<%= will_paginate %>
+
+</div>

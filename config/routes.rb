@@ -1,6 +1,19 @@
 Ulsimag::Application.routes.draw do
 
+  get "email/inbox"
+
+  get "email/outbox"
+
+  get "email/all"
+
+  namespace :settings do
+    resources :email_accounts, :only => [:index, :create, :destroy]
+    match "account" => "account#index"
+    match "account/update" => "account#update"
+  end
+  
   resources :users
+  
   resources :sessions, :only => [:new, :create, :destroy]
  
   match '/signup',  :to => 'users#new'

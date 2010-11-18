@@ -11,11 +11,13 @@ CREATE TABLE ulsimag_user
   admin BOOLEAN
 );
 
-CREATE TABLE ulsimag_email
+CREATE TABLE ulsimag_email_account
 (
   id INTEGER NOT NULL PRIMARY KEY AUTO_INCREMENT,
   user_id INTEGER NOT NULL,
   email VARCHAR(128) NOT NULL,
+  login VARCHAR(128) NOT NULL,
+  password VARCHAR(128) NOT NULL,
   CONSTRAINT FK_email_user FOREIGN KEY (user_id)
     REFERENCES ulsimag_user (id) ON DELETE CASCADE ON UPDATE RESTRICT
 );

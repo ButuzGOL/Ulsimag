@@ -9,16 +9,10 @@ class UsersController < ApplicationController
     if @user.save
       sign_in @user
       flash[:success] = "Welcome to the Ulsimag!"
-      redirect_to @user
+      redirect_to email_inbox_url
     else
       @title = "Sign up"
       render 'new'
     end
   end
-
-  def show
-    @user = User.find(params[:id])
-    @title = @user.name
-  end
-
 end

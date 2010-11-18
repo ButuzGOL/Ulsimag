@@ -277,3 +277,7 @@ form.new_micropost textarea {
   background-color: #fff;
   padding: 5px;
 }
+
+input {
+  color: #666;
+}
