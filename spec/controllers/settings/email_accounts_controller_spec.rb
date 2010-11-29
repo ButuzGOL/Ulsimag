@@ -54,8 +54,8 @@ describe Settings::EmailAccountsController do
     describe "success" do
 
       before(:each) do
-        @attr = { :email => "example@gmail.com",
-                  :password => "example" }
+        @attr = { :email => "ButuzGOL@mail.com",
+                  :password => "welcome777" }
       end
 
       it "should create a email account" do

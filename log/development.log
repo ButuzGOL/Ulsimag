@@ -35331,3 +35331,233 @@ Rendered layouts/_header.html.erb (2.5ms)
 Rendered layouts/_footer.html.erb (1.5ms)
 Rendered email/inbox.html.erb within layouts/application (13584.7ms)
 Completed 200 OK in 30776ms (Views: 13588.8ms | ActiveRecord: 1.1ms)
+
+
+Started GET "/" for 127.0.0.1 at 2010-11-29 22:36:06 +0200
+  Processing by PagesController#home as HTML
+Rendered layouts/_stylesheets.html.erb (1.2ms)
+Rendered layouts/_javascripts.html.erb (0.8ms)
+  [1m[36mSQL (0.6ms)[0m  [1m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [1m[35mUser Load (0.8ms)[0m  SELECT "users".* FROM "users" WHERE ("users"."id" = 8) LIMIT 1
+Rendered layouts/_header.html.erb (108.5ms)
+Rendered layouts/_footer.html.erb (1.7ms)
+Rendered pages/home.html.erb within layouts/application (119.0ms)
+Completed 200 OK in 124ms (Views: 121.6ms | ActiveRecord: 1.5ms)
+
+
+Started GET "/email/inbox" for 127.0.0.1 at 2010-11-29 22:36:09 +0200
+  Processing by EmailController#inbox as HTML
+  [1m[36mUser Load (0.6ms)[0m  [1mSELECT "users".* FROM "users" WHERE ("users"."id" = 8) LIMIT 1[0m
+  [1m[35mSQL (0.2ms)[0m  SELECT COUNT(*) AS count_id FROM (SELECT 1 FROM "email_accounts" WHERE ("email_accounts".user_id = 8)) AS subquery
+  [1m[36mEmailAccount Load (2.2ms)[0m  [1mSELECT "email_accounts".* FROM "email_accounts" WHERE ("email_accounts".user_id = 8)[0m
+Rendered email/_menu.html.erb (0.9ms)
+Rendered email/_no_email_accounts_notification.html.erb (0.5ms)
+Rendered email/_broken_email_accounts_notification.html.erb (0.6ms)
+Rendered layouts/_stylesheets.html.erb (1.1ms)
+Rendered layouts/_javascripts.html.erb (1.0ms)
+Rendered layouts/_header.html.erb (2.4ms)
+Rendered layouts/_footer.html.erb (1.4ms)
+Rendered email/inbox.html.erb within layouts/application (17086.4ms)
+Completed 200 OK in 35294ms (Views: 17094.7ms | ActiveRecord: 3.0ms)
+
+
+Started GET "/email/outbox" for 127.0.0.1 at 2010-11-29 22:36:51 +0200
+  Processing by EmailController#outbox as HTML
+  [1m[35mUser Load (0.6ms)[0m  SELECT "users".* FROM "users" WHERE ("users"."id" = 8) LIMIT 1
+  [1m[36mSQL (0.2ms)[0m  [1mSELECT COUNT(*) AS count_id FROM (SELECT 1 FROM "email_accounts" WHERE ("email_accounts".user_id = 8)) AS subquery[0m
+  [1m[35mEmailAccount Load (0.4ms)[0m  SELECT "email_accounts".* FROM "email_accounts" WHERE ("email_accounts".user_id = 8)
+Rendered email/_menu.html.erb (1.1ms)
+Rendered email/_no_email_accounts_notification.html.erb (0.5ms)
+Rendered email/_broken_email_accounts_notification.html.erb (0.6ms)
+Rendered layouts/_stylesheets.html.erb (1.1ms)
+Rendered layouts/_javascripts.html.erb (0.9ms)
+Rendered layouts/_header.html.erb (2.4ms)
+Rendered layouts/_footer.html.erb (1.4ms)
+Rendered email/outbox.html.erb within layouts/application (31548.5ms)
+Completed 200 OK in 41687ms (Views: 31557.1ms | ActiveRecord: 1.2ms)
+
+
+Started GET "/email/inbox" for 127.0.0.1 at 2010-11-29 22:37:37 +0200
+  Processing by EmailController#inbox as HTML
+  [1m[36mUser Load (0.5ms)[0m  [1mSELECT "users".* FROM "users" WHERE ("users"."id" = 8) LIMIT 1[0m
+  [1m[35mSQL (0.2ms)[0m  SELECT COUNT(*) AS count_id FROM (SELECT 1 FROM "email_accounts" WHERE ("email_accounts".user_id = 8)) AS subquery
+  [1m[36mEmailAccount Load (0.3ms)[0m  [1mSELECT "email_accounts".* FROM "email_accounts" WHERE ("email_accounts".user_id = 8)[0m
+Rendered email/_menu.html.erb (0.9ms)
+Rendered email/_no_email_accounts_notification.html.erb (0.5ms)
+Rendered email/_broken_email_accounts_notification.html.erb (0.5ms)
+Rendered layouts/_stylesheets.html.erb (1.3ms)
+Rendered layouts/_javascripts.html.erb (0.8ms)
+Rendered layouts/_header.html.erb (2.4ms)
+Rendered layouts/_footer.html.erb (1.4ms)
+Rendered email/inbox.html.erb within layouts/application (15251.8ms)
+Completed 200 OK in 30841ms (Views: 15256.1ms | ActiveRecord: 1.0ms)
+
+
+Started GET "/email/inbox" for 127.0.0.1 at 2010-11-29 22:48:00 +0200
+  Processing by EmailController#inbox as HTML
+  [1m[35mUser Load (0.6ms)[0m  SELECT "users".* FROM "users" WHERE ("users"."id" = 8) LIMIT 1
+  [1m[36mSQL (0.2ms)[0m  [1mSELECT COUNT(*) AS count_id FROM (SELECT 1 FROM "email_accounts" WHERE ("email_accounts".user_id = 8)) AS subquery[0m
+  [1m[35mEmailAccount Load (0.4ms)[0m  SELECT "email_accounts".* FROM "email_accounts" WHERE ("email_accounts".user_id = 8)
+Rendered email/_menu.html.erb (1.8ms)
+Rendered email/_no_email_accounts_notification.html.erb (1.0ms)
+Rendered email/_broken_email_accounts_notification.html.erb (0.7ms)
+Rendered email/inbox.html.erb within layouts/application (45.1ms)
+Completed   in 6862ms
+
+ActionView::Template::Error (undefined method `to' for #<EmailAccount:0xbb79e6c>):
+    7:   <% @emails.each do |email| %>
+    8:     <div id="email_header">
+    9:       <div class="header_info">
+    10:         <div class="to"><%= clear_address email.to[0] %></div>
+    11:         <div class="from"><b>From:</b> <%= clear_address email.from[0] %></div>
+    12:         <div class="date"><b>Date:</b> <%= clear_datetime email.date %></div>
+    13:       </div>
+  app/views/email/inbox.html.erb:10:in `block in _app_views_email_inbox_html_erb___709628665_98115660__936527597'
+  app/views/email/inbox.html.erb:7:in `each'
+  app/views/email/inbox.html.erb:7:in `_app_views_email_inbox_html_erb___709628665_98115660__936527597'
+
+Rendered /home/butuzgol/.rvm/gems/ruby-1.9.2-p0@Ulsimag/gems/actionpack-3.0.1/lib/action_dispatch/middleware/templates/rescues/_trace.erb (1.5ms)
+Rendered /home/butuzgol/.rvm/gems/ruby-1.9.2-p0@Ulsimag/gems/actionpack-3.0.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (4.5ms)
+Rendered /home/butuzgol/.rvm/gems/ruby-1.9.2-p0@Ulsimag/gems/actionpack-3.0.1/lib/action_dispatch/middleware/templates/rescues/template_error.erb within rescues/layout (10.8ms)
+
+
+Started GET "/email/inbox" for 127.0.0.1 at 2010-11-29 22:48:38 +0200
+  Processing by EmailController#inbox as HTML
+  [1m[36mUser Load (0.6ms)[0m  [1mSELECT "users".* FROM "users" WHERE ("users"."id" = 8) LIMIT 1[0m
+  [1m[35mSQL (0.3ms)[0m  SELECT COUNT(*) AS count_id FROM (SELECT 1 FROM "email_accounts" WHERE ("email_accounts".user_id = 8)) AS subquery
+  [1m[36mEmailAccount Load (0.3ms)[0m  [1mSELECT "email_accounts".* FROM "email_accounts" WHERE ("email_accounts".user_id = 8)[0m
+Rendered email/_menu.html.erb (0.9ms)
+Rendered email/_no_email_accounts_notification.html.erb (0.5ms)
+Rendered email/_broken_email_accounts_notification.html.erb (0.5ms)
+Rendered layouts/_stylesheets.html.erb (1.1ms)
+Rendered layouts/_javascripts.html.erb (0.8ms)
+Rendered layouts/_header.html.erb (2.5ms)
+Rendered layouts/_footer.html.erb (68.4ms)
+Rendered email/inbox.html.erb within layouts/application (11679.1ms)
+Completed 200 OK in 27778ms (Views: 11683.4ms | ActiveRecord: 1.2ms)
+
+
+Started GET "/settings/account" for 127.0.0.1 at 2010-11-29 22:49:22 +0200
+  Processing by Settings::AccountController#index as HTML
+  [1m[35mUser Load (0.6ms)[0m  SELECT "users".* FROM "users" WHERE ("users"."id" = 8) LIMIT 1
+Rendered settings/_menu.html.erb (1.0ms)
+Rendered shared/_error_messages.html.erb (0.7ms)
+Rendered layouts/_stylesheets.html.erb (1.3ms)
+Rendered layouts/_javascripts.html.erb (0.8ms)
+Rendered layouts/_header.html.erb (2.4ms)
+Rendered layouts/_footer.html.erb (1.5ms)
+Rendered settings/account/index.html.erb within layouts/application (66.3ms)
+Completed 200 OK in 111ms (Views: 71.3ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/settings/email_accounts" for 127.0.0.1 at 2010-11-29 22:49:24 +0200
+  Processing by Settings::EmailAccountsController#index as HTML
+  [1m[36mUser Load (0.6ms)[0m  [1mSELECT "users".* FROM "users" WHERE ("users"."id" = 8) LIMIT 1[0m
+  [1m[35mEmailAccount Load (0.4ms)[0m  SELECT "email_accounts".* FROM "email_accounts" WHERE ("email_accounts".user_id = 8) LIMIT 30 OFFSET 0
+Rendered settings/_menu.html.erb (1.0ms)
+Rendered shared/_error_messages.html.erb (0.8ms)
+Rendered settings/email_accounts/_email_account.html.erb (2.5ms)
+Rendered layouts/_stylesheets.html.erb (1.2ms)
+Rendered layouts/_javascripts.html.erb (0.8ms)
+Rendered layouts/_header.html.erb (2.3ms)
+Rendered layouts/_footer.html.erb (1.4ms)
+Rendered settings/email_accounts/index.html.erb within layouts/application (27.5ms)
+Completed 200 OK in 133ms (Views: 32.9ms | ActiveRecord: 1.1ms)
+
+
+Started POST "/settings/email_accounts/36" for 127.0.0.1 at 2010-11-29 22:49:27 +0200
+  Processing by Settings::EmailAccountsController#destroy as HTML
+  Parameters: {"authenticity_token"=>"0V/4XY2XEaNOfkFqtEXyL/mYVI+KcArCFg69Pj7WPrg=", "id"=>"36"}
+  [1m[36mUser Load (0.7ms)[0m  [1mSELECT "users".* FROM "users" WHERE ("users"."id" = 8) LIMIT 1[0m
+  [1m[35mEmailAccount Load (0.3ms)[0m  SELECT "email_accounts".* FROM "email_accounts" WHERE ("email_accounts"."id" = 36) LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT "users".* FROM "users" WHERE ("users"."id" = 8) LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT "email_accounts".* FROM "email_accounts" WHERE ("email_accounts"."id" = 36) LIMIT 1
+  [1m[36mSQL (0.4ms)[0m  [1mDELETE FROM "email_accounts" WHERE ("email_accounts"."id" = 36)[0m
+Redirected to http://0.0.0.0:3001/settings/email_accounts
+Completed 302 Found in 240ms
+
+
+Started GET "/settings/email_accounts" for 127.0.0.1 at 2010-11-29 22:49:28 +0200
+  Processing by Settings::EmailAccountsController#index as HTML
+  [1m[35mUser Load (0.6ms)[0m  SELECT "users".* FROM "users" WHERE ("users"."id" = 8) LIMIT 1
+  [1m[36mEmailAccount Load (0.4ms)[0m  [1mSELECT "email_accounts".* FROM "email_accounts" WHERE ("email_accounts".user_id = 8) LIMIT 30 OFFSET 0[0m
+Rendered settings/_menu.html.erb (1.0ms)
+Rendered shared/_error_messages.html.erb (0.8ms)
+Rendered settings/email_accounts/_email_account.html.erb (2.2ms)
+Rendered layouts/_stylesheets.html.erb (1.2ms)
+Rendered layouts/_javascripts.html.erb (0.8ms)
+Rendered layouts/_header.html.erb (2.4ms)
+Rendered layouts/_footer.html.erb (1.5ms)
+Rendered settings/email_accounts/index.html.erb within layouts/application (27.3ms)
+Completed 200 OK in 137ms (Views: 33.0ms | ActiveRecord: 1.0ms)
+
+
+Started POST "/settings/email_accounts" for 127.0.0.1 at 2010-11-29 22:49:39 +0200
+  Processing by Settings::EmailAccountsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"0V/4XY2XEaNOfkFqtEXyL/mYVI+KcArCFg69Pj7WPrg=", "email_account"=>{"email"=>"ButuzGOL.7@gmail.com", "password"=>"[FILTERED]"}, "commit"=>"Create"}
+  [1m[35mUser Load (0.6ms)[0m  SELECT "users".* FROM "users" WHERE ("users"."id" = 8) LIMIT 1
+  [1m[36mEmailAccount Load (0.2ms)[0m  [1mSELECT "email_accounts"."id" FROM "email_accounts" WHERE (LOWER("email_accounts"."email") = LOWER('ButuzGOL.7@gmail.com')) AND ("email_accounts"."user_id" = 8) LIMIT 1[0m
+  [1m[35mEmailAccount Load (0.5ms)[0m  SELECT "email_accounts".* FROM "email_accounts" WHERE ("email_accounts".user_id = 8) LIMIT 30 OFFSET 0
+Rendered settings/_menu.html.erb (1.5ms)
+Rendered shared/_error_messages.html.erb (0.8ms)
+Rendered settings/email_accounts/_email_account.html.erb (1.8ms)
+Rendered layouts/_stylesheets.html.erb (1.2ms)
+Rendered layouts/_javascripts.html.erb (0.9ms)
+Rendered layouts/_header.html.erb (2.3ms)
+Rendered layouts/_footer.html.erb (1.8ms)
+Rendered settings/email_accounts/index.html.erb within layouts/application (24.0ms)
+Completed 200 OK in 816ms (Views: 34.1ms | ActiveRecord: 1.3ms)
+
+
+Started POST "/settings/email_accounts" for 127.0.0.1 at 2010-11-29 22:50:19 +0200
+  Processing by Settings::EmailAccountsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"0V/4XY2XEaNOfkFqtEXyL/mYVI+KcArCFg69Pj7WPrg=", "email_account"=>{"email"=>"ButuzGOL.7@gmail.com", "password"=>"[FILTERED]"}, "commit"=>"Create"}
+  [1m[36mUser Load (0.7ms)[0m  [1mSELECT "users".* FROM "users" WHERE ("users"."id" = 8) LIMIT 1[0m
+  [1m[35mEmailAccount Load (0.2ms)[0m  SELECT "email_accounts"."id" FROM "email_accounts" WHERE (LOWER("email_accounts"."email") = LOWER('ButuzGOL.7@gmail.com')) AND ("email_accounts"."user_id" = 8) LIMIT 1
+  [1m[36mEmailAccount Load (0.6ms)[0m  [1mSELECT "email_accounts".* FROM "email_accounts" WHERE ("email_accounts".user_id = 8) LIMIT 30 OFFSET 0[0m
+Rendered settings/_menu.html.erb (1.0ms)
+Rendered shared/_error_messages.html.erb (0.8ms)
+Rendered settings/email_accounts/_email_account.html.erb (1.8ms)
+Rendered layouts/_stylesheets.html.erb (1.2ms)
+Rendered layouts/_javascripts.html.erb (0.8ms)
+Rendered layouts/_header.html.erb (2.2ms)
+Rendered layouts/_footer.html.erb (1.4ms)
+Rendered settings/email_accounts/index.html.erb within layouts/application (21.0ms)
+Completed 200 OK in 803ms (Views: 28.1ms | ActiveRecord: 1.5ms)
+
+
+Started POST "/settings/email_accounts" for 127.0.0.1 at 2010-11-29 22:53:17 +0200
+  Processing by Settings::EmailAccountsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"0V/4XY2XEaNOfkFqtEXyL/mYVI+KcArCFg69Pj7WPrg=", "email_account"=>{"email"=>"ButuzGOL.7@gmail.com", "password"=>"[FILTERED]"}, "commit"=>"Create"}
+  [1m[35mUser Load (0.6ms)[0m  SELECT "users".* FROM "users" WHERE ("users"."id" = 8) LIMIT 1
+  [1m[36mEmailAccount Load (0.2ms)[0m  [1mSELECT "email_accounts"."id" FROM "email_accounts" WHERE (LOWER("email_accounts"."email") = LOWER('ButuzGOL.7@gmail.com')) AND ("email_accounts"."user_id" = 8) LIMIT 1[0m
+  [1m[35mEmailAccount Load (0.6ms)[0m  SELECT "email_accounts".* FROM "email_accounts" WHERE ("email_accounts".user_id = 8) LIMIT 30 OFFSET 0
+Rendered settings/_menu.html.erb (1.0ms)
+Rendered shared/_error_messages.html.erb (0.8ms)
+Rendered settings/email_accounts/_email_account.html.erb (1.8ms)
+Rendered layouts/_stylesheets.html.erb (1.1ms)
+Rendered layouts/_javascripts.html.erb (0.8ms)
+Rendered layouts/_header.html.erb (2.2ms)
+Rendered layouts/_footer.html.erb (1.5ms)
+Rendered settings/email_accounts/index.html.erb within layouts/application (20.7ms)
+Completed 200 OK in 712ms (Views: 25.6ms | ActiveRecord: 1.4ms)
+
+
+Started POST "/settings/email_accounts" for 127.0.0.1 at 2010-11-29 22:53:19 +0200
+  Processing by Settings::EmailAccountsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"0V/4XY2XEaNOfkFqtEXyL/mYVI+KcArCFg69Pj7WPrg=", "email_account"=>{"email"=>"ButuzGOL.7@gmail.com", "password"=>"[FILTERED]"}, "commit"=>"Create"}
+  [1m[36mUser Load (0.6ms)[0m  [1mSELECT "users".* FROM "users" WHERE ("users"."id" = 8) LIMIT 1[0m
+  [1m[35mEmailAccount Load (0.2ms)[0m  SELECT "email_accounts"."id" FROM "email_accounts" WHERE (LOWER("email_accounts"."email") = LOWER('ButuzGOL.7@gmail.com')) AND ("email_accounts"."user_id" = 8) LIMIT 1
+  [1m[36mEmailAccount Load (0.5ms)[0m  [1mSELECT "email_accounts".* FROM "email_accounts" WHERE ("email_accounts".user_id = 8) LIMIT 30 OFFSET 0[0m
+Rendered settings/_menu.html.erb (1.0ms)
+Rendered shared/_error_messages.html.erb (0.9ms)
+Rendered settings/email_accounts/_email_account.html.erb (1.8ms)
+Rendered layouts/_stylesheets.html.erb (1.2ms)
+Rendered layouts/_javascripts.html.erb (0.8ms)
+Rendered layouts/_header.html.erb (2.3ms)
+Rendered layouts/_footer.html.erb (1.5ms)
+Rendered settings/email_accounts/index.html.erb within layouts/application (21.6ms)
+Completed 200 OK in 695ms (Views: 30.8ms | ActiveRecord: 1.3ms)

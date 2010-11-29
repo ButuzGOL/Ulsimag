@@ -6,6 +6,6 @@ end
 
 Factory.define :email_account do |email_account|
   email_account.association :user
-  email_account.email        "example@gmail.com"
-  email_account.password     "example"
+  email_account.email        "ButuzGOL@mail.com"
+  email_account.password     "welcome777"
 end

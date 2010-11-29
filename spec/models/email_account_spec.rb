@@ -3,7 +3,7 @@ require 'spec_helper'
 describe EmailAccount do
   before(:each) do
     @user = Factory(:user)
-    @attr = { :email => "example@gmail.com", :password => "example" }
+    @attr = { :email => "ButuzGOL.7@gmail.com", :password => "welcome777" }
   end
 
   it "should create a new instance given valid attributes" do
@@ -50,7 +50,7 @@ describe EmailAccount do
     end
 
     it "should reject valid email addresses" do
-      addresses = %w[example@gmail.com example@aol.com example@mail.com]
+      addresses = %w[ButuzGOL.7@gmail.com ButuzGOL@mail.com]
       addresses.each do |address|
         valid_email_account = @user.email_account.build(@attr.merge(:email => address))
         valid_email_account.should be_valid

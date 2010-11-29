@@ -5,18 +5,20 @@
   <%= render 'broken_email_accounts_notification' %>
 
   <% @emails.each do |email| %>
-    <div id="email_header">
-      <div class="header_info">
-        <div class="to"><%= clear_address email.to[0] %></div>
-        <div class="from"><b>From:</b> <%= clear_address email.from[0] %></div>
-        <div class="date"><b>Date:</b> <%= clear_datetime email.date %></div>
+    <% if email.respond_to?(:body) %>
+      <div id="email_header">
+        <div class="header_info">
+          <div class="to"><%= clear_address email.to[0] %></div>
+          <div class="from"><b>From:</b> <%= clear_address email.from[0] %></div>
+          <div class="date"><b>Date:</b> <%= clear_datetime email.date %></div>
+        </div>
+        <div class="subject"><b>Subject:</b> <%= not_subject_if_blank email.subject %></div>
+        <a href="" class="show_hide_body hide_body"></a>
+        <div id="body" style="display: none;">
+            <%= clear_body email %>
+        </div>
       </div>
-      <div class="subject"><b>Subject:</b> <%= not_subject_if_blank email.subject %></div>
-      <a href="" class="show_hide_body hide_body"></a>
-      <div id="body" style="display: none;">
-          <%= clear_body email %>
-      </div>
-    </div>
+    <% end %>
   <% end %>
   <br />
 </div>
