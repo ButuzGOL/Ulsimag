@@ -1,10 +1,7 @@
 Ulsimag::Application.routes.draw do
 
   get "email/inbox"
-
   get "email/outbox"
-
-  get "email/all"
 
   namespace :settings do
     resources :email_accounts, :only => [:index, :create, :destroy]

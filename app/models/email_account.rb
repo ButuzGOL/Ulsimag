@@ -15,13 +15,24 @@ class EmailAccount < ActiveRecord::Base
   belongs_to :user
 
   validates :user_id, :presence => true
-  email_regex = /\A[\w+\-.]+@(gmail|mail|aol).com/i
-
+  
   validates :email, :presence => true,
-                    :format   => { :with => email_regex },
                     :uniqueness => { :case_sensitive => false,
                                      :scope => :user_id }
 
+  email_regex = /(\A[\w+\-.]+@(gmail|mail|aol).com$|^$)/i
+  validates_format_of :email, :with => email_regex, 
+            :message => "account can be just (gmail.com aol.com mail.com)"
+            
+  after_validation :is_login_to_service?
+
   validates :password, :presence => true
 
+  def is_login_to_service?
+      if errors.empty?
+        require 'email_parser/email'
+        email_parser = Email.new(email, password)
+        errors[:base] << "Wrong email or password" if !email_parser.logged_in?
+      end
+  end
 end

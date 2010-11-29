@@ -1,0 +1,10 @@
+<% if @broken_email_accounts.count != 0 %>
+  <div>
+    <p>You have broken email accounts:</p>
+    <ul>
+    <% @broken_email_accounts.each do |email_account| %>
+      <li><%= email_account.email %></li>
+    <% end %>
+    </ul>
+  </div>
+<% end %>

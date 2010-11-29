@@ -20,12 +20,6 @@ describe Settings::AccountController do
       response.should have_selector("title", :content => "Settings")
     end
 
-    it "should have a link to change the Gravatar" do
-      get :index
-      gravatar_url = "http://gravatar.com/emails"
-      response.should have_selector("a", :href => gravatar_url,
-                                         :content => "change")
-    end
   end
 
   describe "PUT 'update'" do

@@ -1,4 +1,3 @@
-
 body {
   background: #FFF url(../images/background.png) fixed;
   color: #555;
@@ -12,7 +11,7 @@ header img {
   float: left;
 }
 
-header #logo {
+header #logo_ulsi {
   padding: 10px 20px;
 	font-size: 400%;
   font-weight: bold;
@@ -23,7 +22,7 @@ header #logo {
   margin-left: -5px;
 }
 
-header #logo:hover {
+header #logo_ulsi:hover {
   text-decoration: none;
 }
 
@@ -280,4 +279,44 @@ form.new_micropost textarea {
 
 input {
   color: #666;
+}
+
+#email_header {
+  border-bottom: 1px solid #666;
+  margin-bottom: 20px;
+  padding-bottom: 10px;
+}
+
+#email_header .header_info div {
+  float:left;
+  font-size: 11px;
+}
+
+#email_header .header_info .from {
+  width:220px;
+}
+
+#email_header .header_info .to {
+  width:180px;
+}
+
+#email_header .subject {
+  clear:both;
+  font-size: 14px;
+}
+
+.show_hide_body {
+  display: block;
+
+  width: 22px;
+  height: 22px;
+  cursor: pointer;
+}
+
+.hide_body {
+  background: url(../images/hide.png);
+}
+
+.show_body {
+  background: url(../images/show.png);
 }
