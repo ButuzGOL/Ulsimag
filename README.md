@@ -1,3 +1,2 @@
 # Ultra simple mail aggregator - Ulsimag
 
-Web page http://www.pamparam.net/
